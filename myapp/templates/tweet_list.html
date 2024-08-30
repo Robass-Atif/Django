@@ -1,0 +1,40 @@
+ {% extends "layout.html" %}
+
+{% block title %} Robass Tweet Center   {% endblock %}
+
+{% block content %}
+  
+    <div class="row">
+        <div class="col-md-6 offset-md-3 mt-4">
+        <h1 class="text-center text-light">Robass Tweet App</h1>
+
+            
+            {% comment %} <h3 class="text-center text-light">Robass Tweet App is a simple app that allows you to post tweets and view them in a list. </h3> {% endcomment %}
+            <a href="{% url 'create_tweet' %}" class="btn btn-primary md-4">Create Tweet</a>
+
+            <div class="container row gap-3 mt-3">
+
+                {% for tweet in tweets %}
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ tweet.photo.url}}" class="card-img-top" alt="...">
+
+                    <div class="card-body">
+                      <h5 class="card-title">{{tweet.user.username }}</h5>
+                      <p class="card-text">{{tweet.text}}</p>
+                      
+                        <a href="{% url 'edit_tweet' tweet.id %}" class="btn btn-primary">Edit</a>
+                        <a href="{% url 'delete_tweet' tweet.id %}" class="btn btn-danger">Delete</a>
+                    </div>
+                  </div>
+                {% endfor %}    
+
+
+
+            </div>
+
+       
+        </div>
+    </div>
+
+
+{% endblock %} 
