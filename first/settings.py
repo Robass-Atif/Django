@@ -26,7 +26,9 @@ SECRET_KEY = 'django-insecure-mnd*zd6@q_e5tnr&)qfx2y7o$c+cpfey&(ymah8c3520(hs0@l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = ['.vercel.app', 'https://django-two-amber.vercel.app/']
+
 
 
 # Application definition
@@ -49,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'first.urls'
@@ -122,6 +125,8 @@ STATIC_URL = 'static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # medi url
@@ -136,3 +141,13 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+
+
+# settings.py
+LOGIN_URL = '/accounts/login'
+
+
+
+LOGIN_REDIRECT_URL='/tweet'
+
+LOGOUT_REDIRECT_URL='/tweet'
